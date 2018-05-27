@@ -30,7 +30,6 @@ get_header(); ?>
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
-
 			<?php
 			if ( have_posts() ) :
 
@@ -57,6 +56,28 @@ get_header(); ?>
 				get_template_part( 'template-parts/post/content', 'none' );
 
 			endif;
+			?>
+
+			--------------------------------
+			<?php
+				query_posts( array(
+				    'category_name'  => 'children-book',
+				    'posts_per_page' => -1
+				) );
+				while (have_posts()) : the_post(); 
+					get_template_part( 'template-parts/post/content', get_post_format() );
+				endwhile;
+			?>
+
+			--------------------------------
+			<?php
+				query_posts( array(
+				    'tag'  => 'tieng-anh',
+				    'posts_per_page' => -1
+				) );
+				while (have_posts()) : the_post(); 
+					get_template_part( 'template-parts/post/content', get_post_format() );
+				endwhile;
 			?>
 
 		</main><!-- #main -->
